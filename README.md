@@ -1,5 +1,25 @@
 # cerebro-base64
-Cerebro plugin to decode and encode string using base64 method and show gifs from thecodinglove
+Cerebro plugin to decode and encode buffer using base64 methods
+
+## API
+
+* Encode
+Encodes a buffer to base64, returns encoded ascii string
+
+```javascript
+base64 decode it's awesome
+
+= aXQncyBhd2Vzb21l
+```
+
+* Decode
+Decodes a buffer containing base64 string to ascii string.
+
+```javascript
+base64 decode aXQncyBhd2Vzb21l
+
+= it's awesome
+```
 
 ## Related
 
