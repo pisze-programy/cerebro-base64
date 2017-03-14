@@ -6,7 +6,7 @@ Cerebro plugin to decode and encode buffer using base64 methods
 * Encode
 Encodes a buffer to base64, returns encoded ascii string
 
-```javascript
+```ssh
 base64 decode it's awesome
 
 = aXQncyBhd2Vzb21l
@@ -15,7 +15,7 @@ base64 decode it's awesome
 * Decode
 Decodes a buffer containing base64 string to ascii string.
 
-```javascript
+```ssh
 base64 decode aXQncyBhd2Vzb21l
 
 = it's awesome
