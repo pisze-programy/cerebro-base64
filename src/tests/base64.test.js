@@ -5,13 +5,13 @@ describe('Base64 tests', () => {
   it('Base64 Encode method should return decoded buffer', () => {
     const payload = "it's working";
 
-    expect(new Base64().Encode(payload)).toEqual("aXQncyB3b3JraW5n");
+    expect(new Base64().encode(payload)).toEqual("aXQncyB3b3JraW5n");
   });
 
   it('Base64 Decode method should return encoded buffer', () => {
     const payload = "aXQncyB3b3JraW5n";
 
-    expect(new Base64().Decode(payload)).toEqual("it's working");
+    expect(new Base64().decode(payload)).toEqual("it's working");
   });
 
   it('Base64 static trim should trim spaces before', () => {
