@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import './styles.scss';
 
-export default function Preview ({method}) {
+const Preview = ({method}) => {
   if (!method) {
     return <div className="loading">loading...</div>
   }
@@ -12,9 +12,12 @@ export default function Preview ({method}) {
       <p>Select it to use base64 {method}</p>
     </div>
   );
-}
+};
 
 Preview.propTypes = {
-  method: React.PropTypes.string,
-  actions: React.PropTypes.object.isRequired,
+  method: React.PropTypes.string
 };
+
+module.exports = Preview;
+
+export default Preview;

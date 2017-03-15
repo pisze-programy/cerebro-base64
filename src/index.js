@@ -1,6 +1,6 @@
 import React from 'react';
-import Preview from 'Preview';
 import Base64 from './base64';
+import Preview from 'Preview';
 
 const Plugin = ({ term, display, actions }) => {
   const Methods = {
@@ -8,41 +8,42 @@ const Plugin = ({ term, display, actions }) => {
     ENCODE: 'encode'
   };
 
-  const pluginMatch = term.match(/^base64\s+(.+)/i);
-  const decodeMatch = (str) => str.match(/^decode\s+(.+)/i);
-  const encodeMatch = (str) => str.match(/^encode\s+(.+)/i);
+  const matcher = (str, expression) => str.match(expression);
+  const termMatch = matcher(term, /^base64\s+(.+)/i);
 
-  if (pluginMatch) {
-    Object.keys(Methods).map((method, index) => {
-      display({
-        id: index,
-        title: `Use base64 ${method}`,
-        getPreview: () => <Preview key={index} method={method.toLowerCase()} actions={actions} />,
-        onSelect: (event) => {
-          event.preventDefault();
+  if (!term.startsWith('base64')) return;
 
-          return actions.replaceTerm(`base64 ${method.toLowerCase()} `);
-        }
-      });
+  Object.keys(Methods).map((method, index) => {
+    display({
+      id: index,
+      title: `Use base64 ${method}`,
+      getPreview: () => <Preview key={index} method={method.toLowerCase()} />,
+      onSelect: (event) => {
+        event.preventDefault();
+
+        return actions.replaceTerm(`base64 ${method.toLowerCase()} `);
+      }
     });
+  });
 
-    if (encodeMatch(pluginMatch[1])) {
-      const stringToEncode = pluginMatch[1].replace(Methods.ENCODE, '');
-      const decoded = Base64().Encode(stringToEncode);
+  if (matcher(termMatch[1], /^encode\s+(.+)/i)) {
+    const stringToEncode = termMatch[1].replace(Methods.ENCODE, '');
+    const decoded = new Base64().encode(stringToEncode);
 
-      return display({
-        title: `= ${decoded}`,
-        onSelect: (event) => actions.copyToClipboard(decoded)
-      })
-    } else if (decodeMatch(pluginMatch[1])) {
-      const stringToDecode = pluginMatch[1].replace(Methods.DECODE, '');
-      const encoded = Base64().Decode(stringToDecode);
+    return display({
+      title: `= ${decoded}`,
+      onSelect: (event) => actions.copyToClipboard(decoded)
+    })
+  }
 
-      return display({
-        title: `= ${encoded}`,
-        onSelect: (event) => actions.copyToClipboard(encoded)
-      })
-    }
+  if (matcher(termMatch[1], /^decode\s+(.+)/i)) {
+    const stringToDecode = termMatch[1].replace(Methods.DECODE, '');
+    const encoded = new Base64().decode(stringToDecode);
+
+    return display({
+      title: `= ${encoded}`,
+      onSelect: (event) => actions.copyToClipboard(encoded)
+    })
   }
 };
 
