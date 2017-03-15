@@ -13,9 +13,6 @@ const Plugin = ({ term, display, actions }) => {
   const encodeMatch = (str) => str.match(/^encode\s+(.+)/i);
 
   if (pluginMatch) {
-    console.log(Buffer.from("Javascript").toString('base64'));
-    console.log(Buffer.from("IGphdmFzY3JpcHQ=", 'base64').toString('ascii'));
-
     Object.keys(Methods).map((method, index) => {
       display({
         id: index,
@@ -31,7 +28,7 @@ const Plugin = ({ term, display, actions }) => {
 
     if (encodeMatch(pluginMatch[1])) {
       const stringToEncode = pluginMatch[1].replace(Methods.ENCODE, '');
-      const decoded = new Base64().encode(stringToEncode);
+      const decoded = Base64().Encode(stringToEncode);
 
       return display({
         title: `= ${decoded}`,
@@ -39,7 +36,7 @@ const Plugin = ({ term, display, actions }) => {
       })
     } else if (decodeMatch(pluginMatch[1])) {
       const stringToDecode = pluginMatch[1].replace(Methods.DECODE, '');
-      const encoded = new Base64().decode(stringToDecode);
+      const encoded = Base64().Decode(stringToDecode);
 
       return display({
         title: `= ${encoded}`,
@@ -53,3 +50,5 @@ module.exports = {
   fn: Plugin,
   keyword: 'base64'
 };
+
+export default Plugin;

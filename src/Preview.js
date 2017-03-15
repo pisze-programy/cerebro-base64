@@ -3,7 +3,7 @@ import './styles.scss';
 
 export default function Preview ({method}) {
   if (!method) {
-    return <div>loading...</div>
+    return <div className="loading">loading...</div>
   }
 
   return (
@@ -15,6 +15,6 @@ export default function Preview ({method}) {
 }
 
 Preview.propTypes = {
-  method: React.PropTypes.string.isRequired,
+  method: React.PropTypes.string,
   actions: React.PropTypes.object.isRequired,
 };
