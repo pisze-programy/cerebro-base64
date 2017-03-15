@@ -5,9 +5,8 @@ import Preview from '../Preview';
 
 describe('Preview component tests:', () => {
   const method = "ENCODE";
-  const actions = {};
 
-  const component = mount(<Preview method={method.toLowerCase()} actions={actions} />);
+  const component = mount(<Preview method={method.toLowerCase()} />);
 
   it('Should render Preview component', () => {
     expect(component.length).toBeTruthy();
@@ -35,7 +34,7 @@ describe('Preview component tests:', () => {
 
   it('Should show loading', () => {
     const componentWithLoading = mount(
-      <Preview actions={actions} />
+      <Preview />
     );
 
     expect(componentWithLoading.find('div.loading').length).toBeTruthy();
