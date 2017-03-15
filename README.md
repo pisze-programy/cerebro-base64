@@ -1,5 +1,17 @@
 # cerebro-base64
-Cerebro plugin to decode and encode buffer using base64 methods
+> Cerebro plugin to decode and encode buffer using base64 methods
+
+## Base usage
+
+![Cerebro-base64](https://raw.githubusercontent.com/Krbz/cerebro-base64/master/cerebro-base64.gif)
+
+```javascript
+base64 ${method} ${buffer}
+```
+
+`${method} - look at [API](https://github.com/Krbz/cerebro-base64#api)`
+
+`${buffer} - `Any string, depends on method`
 
 ## API
 
